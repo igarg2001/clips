@@ -17,6 +17,10 @@ export class ModalService {
     // console.log(this.modals);
   }
 
+  deRegisterModal(id: string): void {
+    this.modals = this.modals.filter((modal) => modal.id !== id);
+  }
+
   isModalVisible(id: string): boolean {
     return !!this.modals.find((modal) => modal.id === id)?.visible;
   }
