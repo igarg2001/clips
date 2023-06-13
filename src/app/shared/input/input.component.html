@@ -1,0 +1,40 @@
+<input
+  [formControl]="control"
+  [type]="type"
+  class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
+  [placeholder]="placeholder"
+  [mask]="format"
+  [dropSpecialCharacters]="false"
+/>
+<ng-container *ngIf="control.touched && control.dirty">
+  <!--Input field is required-->
+  <p *ngIf="control.errors?.required" class="text-red-400">
+    {{ name | titlecase }} is required
+  </p>
+  <!--Input field must be of minimum length-->
+  <p *ngIf="control.errors?.minlength" class="text-red-400">
+    {{ name | titlecase }} must be at least
+    {{ control.errors?.minlength.requiredLength }}
+    characters
+  </p>
+  <!--Input field must be a valid email-->
+  <p *ngIf="control.errors?.email" class="text-red-400">
+    {{ name | titlecase }} must be a valid email address
+  </p>
+  <!--Input field must be greater than a minimum value-->
+  <p *ngIf="control.errors?.min" class="text-red-400">
+    {{ name | titlecase }} must be atleast {{ control.errors?.min.min }}
+  </p>
+
+  <!--Input field must be less than a maximum value-->
+  <p *ngIf="control.errors?.max" class="text-red-400">
+    {{ name | titlecase }} must be less than or equal to
+    {{ control.errors?.max.max }}
+  </p>
+
+  <!--Input must be a valid password-->
+  <p *ngIf="control.errors?.pattern" class="text-red-400">
+    {{ name | titlecase }} must be a valid password with atleast 1 uppercase, 1
+    lowercase and 1 number
+  </p>
+</ng-container>
